@@ -1,0 +1,65 @@
+# D: stay , R: rebuild, N: no chain
+
+# SSL1 
+SSLENGTH_1 = (  "R-L.1.X", 
+               "R-E.6",  "R-L.3.CAC,GCC", "R-H.14", "R-L.2.GC", 
+               "R-E.5",  "R-L.2.AC" , "R-H.14", "R-L.4.AGCA",
+	       "R-E.6",  "N-L.2.AC",  "N-H.14", "N-L.2.GC"  ,
+	       "N-E.7",  "N-L.3.CAC", "N-H.14", "N-L.2.GC"  ,
+               "N-E.5",  "N-L.2.AC" , "N-H.14",
+	       "N-L.1.X" )
+
+# SSL2
+SSLENGTH_2 = ( "D-L.1.X",
+               "D-E.6",  "D-L.3.CAC,GCC",  "D-H.14",  "D-L.2.GC", 
+               "D-E.5",  "D-L.2.AC" ,  "D-H.14",  "D-L.4.AGCA",
+	       "D-E.6",  "R-L.2.AC",   "R-H.14",  "R-L.2.GC"  ,
+	       "R-E.7",  "R-L.3.CAC",  "R-H.14",  "R-L.2.GC"  ,
+               "R-E.5",  "N-L.2.AC" ,  "N-H.14",
+ 	       "N-L.1.X" )
+
+# SSL3
+SSLENGTH_3 = (  "D-L.1.X",
+               "D-E.6",  "D-L.3.CAC,GCC",  "D-H.14",  "D-L.2.GC", 
+               "D-E.5",  "D-L.2.AC" ,  "D-H.14",  "D-L.4.AGCA",
+	       "D-E.6",  "D-L.2.AC",   "D-H.14",  "D-L.2.GC"  ,
+	       "D-E.7",  "D-L.3.CAC",  "D-H.14",  "D-L.2.GC"  ,
+               "R-E.5",  "R-L.2.AC" ,  "R-H.14",
+ 	       "R-L.1.X" )
+
+# SSL4
+SSLENGTH_4 = ( "D-L.1.X",
+               "D-E.6",  "D-L.3.CAC,GCC",  "D-H.14",  "D-L.2.GC", 
+               "D-E.5",  "D-L.2.AC" ,  "D-H.14",  "D-L.4.AGCA",
+	       "D-E.6",  "D-L.2.AC",   "D-H.14",  "D-L.2.GC"  ,
+	       "D-E.7",  "D-L.3.CAC",  "D-H.14",  "D-L.2.GC"  ,
+               "D-E.5",  "D-L.2.AC" ,  "D-H.14",
+ 	       "D-L.1.X" )
+
+# SSL5
+SSLENGTH_5 = ( "D-L.1.X",
+               "D-E.6",  "D-L.3.CAC,GCC",  "D-H.14",  "D-L.2.GC", 
+               "D-E.5",  "D-L.2.AC" ,  "D-H.14",  "D-L.4.AGCA",
+	       "D-E.6",  "R-L.2.AC",   "R-H.14",  "R-L.2.GC"  ,
+	       "D-E.7",  "D-L.3.CAC",  "D-H.14",  "D-L.2.GC"  ,
+               "D-E.5",  "D-L.2.AC" ,  "D-H.14",
+ 	       "D-L.1.X" )
+
+# SSL6
+SSLENGTH_6 = ( "D-L.1.X",
+               "D-E.6",  "R-L.3.CAC,GCC", "R-H.14",  "R-L.2.GC", 
+               "D-E.5",  "D-L.2.AC" ,  "D-H.14",  "D-L.4.AGCA",
+	       "D-E.6",  "D-L.2.AC",   "D-H.14",  "D-L.2.GC"  ,
+	       "D-E.7",  "D-L.3.CAC",  "D-H.14",  "D-L.2.GC"  ,
+               "D-E.5",  "R-L.2.AC" ,  "R-H.14",
+ 	       "R-L.1.X" )
+
+
+MOVER_SETS = ( "BUILD_SSL1", "BUILD_SSL2", "BUILD_SSL3", "SHEET-REFINE_SSL4", "REBUILD_SSL5", "REBUILD_SSL6" ) 
+
+SSPAIR     = ( "1-2.P.1;1-3.P.0",
+	       "1-2.P.1;1-3.P.0;3-4.P.0;4-5.P.2",
+	       "1-2.P.1;1-3.P.0;3-4.P.0;4-5.P.2",
+               "1-2.P.1;1-3.P.0;3-4.P.0;4-5.P.2",
+               "1-2.P.1;1-3.P.0;3-4.P.0;4-5.P.2",
+	       "1-2.P.1;1-3.P.0;3-4.P.0;4-5.P.2" ) 
