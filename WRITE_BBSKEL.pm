@@ -100,8 +100,7 @@ sub all_dot {
     } elsif ( $dat[0] eq "H" ) {
 	     $abego = "A";
     } elsif ( $dat[0] eq "E" ) {
-#	     $abego = "C";
-	     $abego = "B";
+	     $abego = "C";
     } elsif ( $dat[0] =~ m/[E,S,U]/ && length( $dat[0] ) >=2 ) {
 	     $abego = "C";
     } elsif ( $dat[0] eq "Q" ) {
@@ -169,8 +168,7 @@ sub sheet_build_filter {
     } elsif ( $dat[0] eq "H" ) {
 	    $abego = "A";
     } elsif ( $dat[0] eq "E" ) {
-#	    $abego = "C";
-	    $abego = "B";
+	    $abego = "C";
     } elsif ( $dat[0] =~ m/[E,S,U]/ && length($dat[0]) >=2 ) {
 	     $abego = "C";
     } elsif ( $dat[0] eq "Q" ) {
@@ -256,8 +254,7 @@ sub rebuild {
     } elsif ( $dat[0] eq "H" ) {
 	    $abego = "A";
     } elsif ( $dat[0] eq "E" ) {
-#	    $abego = "C";
-	    $abego = "B";
+	    $abego = "C";
     } elsif ( $dat[0] =~ m/[E,S,U]/ && length($dat[0]) >=2 ) {
 	    $abego = "C";
     } elsif ( $dat[0] eq "Q" ) {
@@ -383,8 +380,7 @@ sub build {
     } elsif ( $dat[0] eq "H" ) {
 	    $abego = "A";
     } elsif ( $dat[0] eq "E" ) {
-#	    $abego = "C";
-	    $abego = "B";
+	    $abego = "C";
     } elsif ( $dat[0] =~ m/[E,S,U]/ && length($dat[0]) >=2 ) {
 	    $abego = "C";
     } elsif ( $dat[0] eq "Q" ) {
