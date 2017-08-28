@@ -45,6 +45,8 @@ sub read {
        chomp $line;
        $line =~ s/[ \t\n]+//g;
 
+       next if( $line =~ m/^#/ );
+
        if( $line =~ m/SSLENGTH/ ) {
 
 	        ( my $h, $ss ) = split( "=", $line );
@@ -68,11 +70,11 @@ sub read {
         }
       }
 
-      if( $line =~ m/SSPAIR/ || $line =~ m/HHPAIR/ || $line =~ m/HSSTRIPLET/  || $line =~ m/MOVER_SETS/ ) {
+      if( $line =~ m/SSPAIR/ || $line =~ m/HHPAIR/ || $line =~ m/HSSTRIPLET/  || $line =~ m/MOVER_SETS/ || $line =~ m/EXTRA_FILES/ ) {
         ( $type, my $string ) = split( "=", $line );
         $type = lc($type);
         $top->{$type} = $string;
-        #	print "$top->{$type} \n";
+        #print "$type \n";
         $f_top = 1;
 
         if ( $top->{$type} =~ m/\)/ ) {
@@ -136,6 +138,7 @@ sub read {
     $this->{ss_patterns} = \%ss_pattern;
     $this->{sspairs} = \@{$topology{sspair}};
     $this->{mover_sets} = \@{$topology{mover_sets}};
+    $this->{extra_files} = \@{$topology{extra_files}};
 
 }
 

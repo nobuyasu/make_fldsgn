@@ -32,6 +32,12 @@ sub read {
 	     if( $#dat != 2 ) {
          die( "Input error, $f. \n" );
        }
+    } elsif ( $dat[0] =~ m/[E,U,S]/ && length($dat[0]) >= 2 ) {
+
+      if( length($dat[0]) != $dat[1] ) {
+        die( "Strand input and its length are not consistent: $dat[0], $dat[1]" );
+      }
+
     } elsif ( $#dat == 0 && $dat[0] eq "Q" ) {
 
       for( $i=0; $i<=$#ptn; $i++ )  {
@@ -118,26 +124,27 @@ sub read {
 ##############################################################################################
 sub get_length {
 
+  my $this = shift;
   my ( $ssptn ) = @_;
 
   my @ssptn = split( '-', $ssptn );
   my $len = 0;
-  foreach $ss ( @ssptn ){
+  foreach my $ss ( @ssptn ){
 
     my @dat = split( '\.', $ss );
 
-    my $abego;
-    if ( $dat[0] eq "L" ) {
-      $abego = $dat[2];
-    } elsif ( $dat[0] eq "H" ) {
-	    $abego = "A";
-    } elsif ( $dat[0] eq "E" ) {
-	    $abego = "B";
-    } elsif ( $dat[0] eq "Q" ) {
-	    next;
-    } else {
-	    die ( "Error, $dat[0]\n" );
-    }
+    #my $abego;
+    #if ( $dat[0] eq "L" ) {
+    #  $abego = $dat[2];
+  #} elsif ( $dat[0] eq "H" ) {
+	#    $abego = "A";
+  #  } elsif ( $dat[0] eq "E" ) {
+	#    $abego = "B";
+  #  } elsif ( $dat[0] eq "Q" ) {
+	#    next;
+  #  } else {
+	#    die ( "Error, $dat[0]\n" );
+  #  }
 
 	   $len += $dat[1];
    }

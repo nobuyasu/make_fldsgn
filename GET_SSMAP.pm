@@ -47,6 +47,10 @@ sub read {
     my @dat = split( '\.', $ss );
     my $s   = $dat[0];
 
+    if( $s =~m/[E,S,U]/ && length($s)>=2 ) {
+      $s = "E";
+    }
+
     if( $s eq "L" ) {
       $loop ++;
       $loop_ssid[$loop] = $ii;
@@ -66,6 +70,8 @@ sub read {
       if ( $s eq "H" ) {
         push( @rebuild_helices, $helix );
       }
+    } elsif ( $inst[$ii-1] eq "N" ) {
+      next;
     } else {
       $rebuild[$ii] = 0;
     }
@@ -86,30 +92,39 @@ sub read {
   $this->{ssid_hleid} = \%ssid_hleid;
   $this->{hleid_ssid} = \%hleid_ssid;
 
-
-  my $rebuild_loops = "";
   $this->{term_rebuild} = 0;
-  if( $rebuild[ $helix_ssid[ 1 ] ] && $helix_ssid[ 1 ] <=2 ) {
-    my $l = $ssid_hleid[ $helix_ssid[ 1 ] + 1 ];
-    $rebuild_loops = $rebuild_loops.$l.",";
-    $this->{term_rebuild} = 1;
-  }
+  my $rebuild_loops = "";
+  my $rebuild_helices = "";
+  foreach $h ( @rebuild_helices ) {
 
-  if( $rebuild[ $helix_ssid[ $helix ] ] && $helix_ssid[ $helix ] >= $this->{nssid} - 1 ) {
-    my $l = $ssid_hleid[ $helix_ssid[ $helix ] -1 ];
-    $rebuild_loops = $rebuild_loops.$l.",";
-    $this->{term_rebuild} = 1;
+    if(  $h == 1 && $helix_ssid[ 1 ] <= 2 ) {
+
+      print "$helix_ssid[ 1 ] \n";
+
+      my $l = $ssid_hleid[ $helix_ssid[ 1 ] + 1 ];
+      $rebuild_loops = $rebuild_loops.$l.",";
+      $this->{term_rebuild} = 1;
+
+    } elsif ( $h == $this->{nhelix} && $helix_ssid[ $helix ] >= $this->{nssid} - 1 ) {
+
+      my $l = $ssid_hleid[ $helix_ssid[ $h ] - 1 ];
+      $rebuild_loops = $rebuild_loops.$l.",";
+      $this->{term_rebuild} = 1;
+
+    } else {
+
+      my $l1 = $ssid_hleid[ $helix_ssid[ $h ] - 1 ];
+      my $l2 = $ssid_hleid[ $helix_ssid[ $h ] + 1 ];
+      $rebuild_loops = $rebuild_loops.$l1.",".$l2.",";
+
+    }
+    $rebuild_helices = $rebuild_helices.$h.",";
+
   }
   chop $rebuild_loops;
-  $this->{rebuild_loops} = $rebuild_loops;
-
-  my $rebuild_helices = "";
-  foreach my $h ( @rebuild_helices ) {
-    $rebuild_helices = $rebuild_helices.$h.",";
-  }
   chop $rebuild_helices;
-  #print "$rebuild_helices\n";
 
+  $this->{rebuild_loops} = $rebuild_loops;
   $this->{rebuild_helices} = $rebuild_helices;
 
 }
