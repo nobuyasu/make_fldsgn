@@ -76,6 +76,10 @@ my $EXEC = $HOME."/rosetta/mini/bin/rosetta_scripts.static.linuxiccrelease";
 #my $EXEC = "/home/nobuyasu/rosetta/mini/bin/rosetta_scripts.linuxgccrelease";
 #my $ARGS = " -database ${HOME}/rosetta/rosetta_database -s $INPUT_PDB -nstruct $optn{nstruct} -frags::vall_size 200000";
 my $ARGS = " -database ${HOME}/rosetta/rosetta_database -s $INPUT_PDB -nstruct $optn{nstruct} ";
+my $average = "$HOME/rosetta/Rosetta/main/source/bin/ave_structr.linuxgccrelease -database $HOME/rosetta/Rosetta/main/database -hbonds_strong ";
+my $analyze = "$HOME/rosetta/mini/bin/analyze_r2x3.linuxiccrelease -database $HOME/rosetta/rosetta_database -nooutput ";
+my $anal_R_1 = "R --file=$HOME/paper/3_2017/scripts/parallel_beta.geom.R";
+my $anal_R_2 = "R --file=$HOME/paper/3_2017/scripts/parallel_beta.hbond.R";
 
 # make directories
 if( -e "$optn{dir}" ) {
@@ -408,5 +412,15 @@ print( "cd ${outdir} ; ~/scripts/make_jsub.pl --jobtype=$optn{jobtype} --queue=$
 $read_input->dump(*INFO);
 
 print "All input files were produced.\n";
+
+open( ANAL, ">$outdir/analyze.sh");
+print ANAL "#/bin/bash\n\n";
+print ANAL "cd $outdir; nohup $average -in:file:silent $outdir/data/1/*.silent  >& /dev/null & \n";
+print ANAL "cd $outdir; nohup $analyze -nooutput -in:file:centroid_input -in:file:silent $outdir/data/1/*.silent >& /dev/null & ; $anal_R_1; $anal_R_2  \n";
+close( ANAL );
+system( "chmod +x $outdir/analyze.sh");
+
+
+
 
 exit;
