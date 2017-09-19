@@ -22,11 +22,11 @@ sub header_footer {
   my $this = shift;
   my ( $fh, $init_close ) = @_;
 
-  if ( $init_close eq "init" ) {
+  if ( $init_close =~ m/init/ ) {
     print $fh "<dock_design>\n\n";
   }
 
-  if( $init_close eq "close" ) {
+  if( $init_close =~ m/close/ ) {
     print $fh "</dock_design>\n\n";
   }
 
@@ -38,7 +38,7 @@ sub score {
   my $this = shift;
   my ( $fh, $mode, $num, $init_close, $ssmap ) = @_;
 
-  if( $init_close eq "init") {
+  if( $init_close =~ m/init/ ) {
     print $fh "<SCOREFXNS>\n\n";
   }
 
@@ -93,7 +93,7 @@ sub score {
 
   }
 
-  if( $init_close eq "close" ) {
+  if( $init_close =~ m/close/ ) {
     print $fh "</SCOREFXNS>\n\n";
   }
 
@@ -118,7 +118,7 @@ sub filter {
     my $this = shift;
     my ( $fh, $mode, $num, $init_close, $bbskel, $sspair, $ssmap ) = @_;
 
-    if( $init_close eq "init" ) {
+    if( $init_close =~ m/init/ ) {
       print $fh "<FILTERS>\n\n";
     }
 
@@ -187,7 +187,7 @@ sub filter {
 
     }
 
-    if( $init_close eq "close" ) {
+    if( $init_close =~ m/close/ ) {
       print $fh "</FILTERS>\n\n";
     }
 
@@ -199,7 +199,7 @@ sub mover {
   my $this = shift;
   my ( $fh, $mode, $num, $init_close, $bbskel, $ssmap, $extra_file ) = @_;
 
-  if( $init_close eq "init" ) {
+  if( $init_close =~ m/init/ ) {
     print $fh "<MOVERS>\n";
     print $fh "  <Dssp name=dssp/>\n\n";
   }
@@ -272,7 +272,7 @@ sub mover {
 
   }
 
-  if( $init_close eq "close" ) {
+  if( $init_close =~ m/close/ ) {
     print $fh "</MOVERS>\n";
   }
 

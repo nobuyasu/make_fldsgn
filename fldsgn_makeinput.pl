@@ -335,6 +335,10 @@ for( my $ii=1; $ii<=$totptn; $ii++ ) {
     } elsif ( $jj==$#mover_sets ) {
       $init_close = "close";
     }
+    if ( $jj==0 && $jj==$#mover_sets ) {
+      $init_close = "init_close";
+    }
+
     my $ssmap = GET_SSMAP->new;
     my $ss = $ssptn->{$ssl}[$ii-1];
     $ssmap->read( $ss, $instructions->{$ssl} );
@@ -353,6 +357,10 @@ for( my $ii=1; $ii<=$totptn; $ii++ ) {
      } elsif ( $jj==$#mover_sets ) {
        $init_close = "close";
      }
+     if ( $jj==0 && $jj==$#mover_sets ) {
+       $init_close = "init_close";
+     }
+
      my $ssmap = GET_SSMAP->new;
      my $ss = $ssptn->{$ssl}[$ii-1];
      $ssmap->read( $ss, $instructions->{$ssl} );
@@ -368,6 +376,10 @@ for( my $ii=1; $ii<=$totptn; $ii++ ) {
     } elsif ( $jj==$#mover_sets ) {
       $init_close = "close";
     }
+    if ( $jj==0 && $jj==$#mover_sets ) {
+      $init_close = "init_close";
+    }
+
     my $ssmap = GET_SSMAP->new;
     my $ss = $ssptn->{$ssl}[$ii-1];
     $ssmap->read( $ss, $instructions->{$ssl} );
